@@ -9,12 +9,13 @@ import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
+  const [isOtpFormOpen, setIsOtpFormOpen] = useState(false)
 
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>
-        <Layout>
-          <Component {...pageProps} />
+        <Layout isOtpFormOpen={isOtpFormOpen} setIsOtpFormOpen={setIsOtpFormOpen}>
+          <Component {...pageProps} isOtpFormOpen={isOtpFormOpen} setIsOtpFormOpen={setIsOtpFormOpen} />
         </Layout>
       </HydrationBoundary>
     </QueryClientProvider>

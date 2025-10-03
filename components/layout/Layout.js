@@ -1,14 +1,14 @@
-import Footer from "./Footer"
-import Header from "./Header"
+import Footer from "./Footer";
+import Header from "./Header";
 
-function Layout({children}) {
+function Layout({ children, setIsOtpFormOpen }) {
   return (
     <>
-      <Header/>
+      <Header setIsOtpFormOpen={setIsOtpFormOpen} />
       {children}
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
