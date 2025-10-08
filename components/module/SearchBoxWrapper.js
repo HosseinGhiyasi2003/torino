@@ -1,3 +1,4 @@
+import { cities, destinations } from "@/constants/locations";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -7,20 +8,7 @@ function SearchBoxWrapper() {
   const [originModalOpen, setOriginModalOpen] = useState(false);
   const [destinationModalOpen, setDestinationModalOpen] = useState(false);
 
-  const cities = [
-    { id: 1, name: "تهران" },
-    { id: 2, name: "سنندج" },
-    { id: 4, name: "اصفهان" },
-  ];
-  const destinations = [
-    { id: 2, name: "سنندج" },
-    { id: 3, name: "مادرید" },
-    { id: 5, name: "سليمانيه" },
-    { id: 6, name: "اربیل" },
-    { id: 7, name: "مازندران" },
-    { id: 8, name: "گیلان" },
-    { id: 9, name: "ایتالیا" },
-  ]
+ 
 
   return (
     <section className="mt-6">
@@ -30,7 +18,7 @@ function SearchBoxWrapper() {
           های داخلی و خارجی
         </h1>
         {/* mobile design */}
-        <div className="flex flex-col items-center gap-3 w-full max-w-[350px] mx-auto mt-[25px]">
+        <div className="flex flex-col items-center gap-3  mt-[25px]">
           {/* مبدأ و مقصد */}
           <div className="flex justify-between w-full">
             {/* مبدأ */}
