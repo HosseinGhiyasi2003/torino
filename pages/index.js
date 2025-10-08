@@ -10,7 +10,7 @@ export default function Home({ isOtpFormOpen, setIsOtpFormOpen, setConfirmedNumb
 
   return (
     <>
-      {/* <HomePage/> */}
+      <HomePage/>
       {step === 1 ? (
         <>{isOtpFormOpen && <OtpForm setIsOtpFormOpen={setIsOtpFormOpen} setStep={setStep} setOtpCode={setOtpCode} setUserNumber={setUserNumber} />}</>
       ) : (
