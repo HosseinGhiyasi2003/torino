@@ -8,7 +8,7 @@ function Sidebar({ isSidebarOpen, setIsSideBarOpen }) {
       <div
         className={`${
           isSidebarOpen
-            ? "fixed w-full h-full bg-[#3333337D] top-0 right-0 bottom-0 lg:w-0 lg:h-0"
+            ? "fixed w-full h-full bg-[#3333337D] top-0 right-0 bottom-0 lg:w-0 lg:h-0 z-10"
             : "h-0 w-0 bg-white"
         }`}
       >

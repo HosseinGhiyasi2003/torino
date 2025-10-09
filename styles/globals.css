@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+
 @font-face {
   font-family: "BYekan";
   src: url("../public/fonts/BYekan+.woff2");
@@ -17,6 +19,10 @@
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 90rem;
+
+  /* font */
+
+  --font-vazir: 'Vazirmatn', sans-serif;
 }
 
 @utility container {
@@ -39,5 +45,5 @@
 
 body {
   direction: rtl;
-  font-family: "BYekan";
+  font-family: "BYekan", sans-serif;
 }

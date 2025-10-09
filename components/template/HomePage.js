@@ -2,6 +2,8 @@ import Image from "next/image"
 import SearchBoxWrapper from "../module/SearchBoxWrapper"
 import Tours from "../module/Tours"
 import ContactUs from "../module/ContactUs"
+import TorinoSlider from "../module/TorinoSlider"
+import TourFeatures from "../module/TourFeatures"
 
 function HomePage({data, isError}) {
   return (
@@ -12,6 +14,8 @@ function HomePage({data, isError}) {
       <SearchBoxWrapper/>
       <Tours data={data} isError={isError} />
       <ContactUs/>
+      <TorinoSlider/>
+      <TourFeatures/>
     </>
   )
 }
