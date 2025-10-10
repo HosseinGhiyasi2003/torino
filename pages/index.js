@@ -17,8 +17,7 @@ export default function Home({
   const { data, isError } = useQuery({
     queryKey: ["tours"],
     queryFn: () => getTours(),
-  });
-  
+  });  
 
   return (
     <>

@@ -6,8 +6,13 @@ const getTours = async () => {
     return data;
     
   } catch (error) {
-    throw error
+    console.log('مشکلی پیش اومده');
   }
 };
 
-export { getTours };
+const getTourById = async (id) => {
+  const data = await api.get(`tour/${id}`);
+  return data;
+}
+
+export { getTours, getTourById };
