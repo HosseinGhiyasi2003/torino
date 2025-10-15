@@ -12,7 +12,6 @@ const sendOtpCode = async (data) => {
 const checkOtpCode = async (data) => {
   try {
     const res = await api.post("auth/check-otp", data);
-    console.log(res);
     return res;
   } catch (error) {
     console.log('مشکلی پیش اومده');
