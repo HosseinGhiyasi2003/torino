@@ -27,13 +27,11 @@ function CreditCardInfo({data, isPending}) {
   const {mutate} = useMutation({
     mutationFn: (data) => updateUserProfile(data),
     onSuccess: (data) => {
-      console.log(data);
       toast.success(data.data.message);
       queryClient.invalidateQueries({ queryKey: ["userProfile"] })
       setCreditCardInfo(false);
     },
     onError: (err) => {
-      console.log(err);
       toast.error("مشکلی پیش امده لطفا دوباره امتحان کنید");
     }
   })

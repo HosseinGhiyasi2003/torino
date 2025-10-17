@@ -1,9 +1,11 @@
+import { reserveTour } from "@/services/toursApi";
+import { useMutation } from "@tanstack/react-query";
 import { Check, Cross } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 function TourDetailsDesktop({ data, isError, isPending }) {
   const tourData = data?.data;
-  console.log(tourData);
 
   if (isPending) {
     return (
@@ -21,6 +23,20 @@ function TourDetailsDesktop({ data, isError, isPending }) {
     );
   }
 
+  const {mutate} = useMutation({
+    mutationFn: (id) => reserveTour(id),
+    onSuccess: (data) => {
+      toast.success(data?.data?.message)
+    },
+    onError: (err) => {
+      if(err.status == 401) toast.error('لطفا وارد حساب کاربری شوید')
+      else toast.error('مشکلی پیش اومده')
+    }
+  })
+
+  const reserveTourHandler = (id) => {
+    mutate(id);
+  }
 
   return (
     <div className="bg-[#F3F3F3] hidden lg:block max-w-[1740px] w-full mx-auto pt-9 pb-[99px]">
@@ -85,7 +101,7 @@ function TourDetailsDesktop({ data, isError, isPending }) {
                   </span>
                   <span className="text-secondary text-[14px]">تومان</span>
                 </div>
-                <button className="bg-primary w-51 text-white rounded-[10px] text-2xl font-vazir hover:bg-green-700 transition cursor-pointer p-[9px]">
+                <button onClick={() => reserveTourHandler(tourData.id)} className="bg-primary w-51 text-white rounded-[10px] text-2xl font-vazir hover:bg-green-700 transition cursor-pointer p-[9px]">
                   رزرو و خرید
                 </button>
               </div>

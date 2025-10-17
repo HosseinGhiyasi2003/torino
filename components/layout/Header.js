@@ -3,10 +3,13 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { getCookie } from "@/utils/cookie";
+import { SlBasketLoaded } from "react-icons/sl";
+
 
 function Header({ setIsOtpFormOpen }) {
   const [isSidebarOpen, setIsSideBarOpen] = useState(false);
   const [userPhone, setUserPhone] = useState("");
+  const [userProfile, setUserProfile] = useState(false);
 
   useEffect(() => {
     const phone = getCookie("phone");
@@ -33,7 +36,7 @@ function Header({ setIsOtpFormOpen }) {
             />
           </div>
           {userPhone ? (
-            <button className="flex items-center lg:hidden">
+            <button onClick={() => setUserProfile(prevState => !prevState)} className="relative flex items-center lg:hidden cursor-pointer">
               <Image
                 src="/icons/profile.png"
                 width={14}
@@ -51,6 +54,40 @@ function Header({ setIsOtpFormOpen }) {
                 alt="arrow-down"
                 className="size-4"
               />
+              {userProfile && (
+                <div className="absolute left-2.5 w-[157px] top-10 bg-white px-3 rounded-[11px]">
+                  <Link
+                    href="/profile"
+                    className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
+                  >
+                    <Image
+                      src="/icons/profile-white.png"
+                      width={16}
+                      height={16}
+                      className="w-4"
+                    />
+                    <span className="text-[12px]">اطلاعات حساب کاربری</span>
+                  </Link>
+                  <Link
+                    href="/user-basket"
+                    className="flex items-center gap-x-3 py-2 border-b-1 border-[#0000001F]"
+                  >
+                    <SlBasketLoaded/>
+                    <span className="text-[12px]">سبد خرید</span>
+                  </Link>
+                  <div className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2">
+                    <Image
+                      src="/icons/logout.png"
+                      width={16}
+                      height={16}
+                      className="w-4"
+                    />
+                    <span className="text-[12px] text-[#D40000]">
+                      خروج از حساب کاربری
+                    </span>
+                  </div>
+                </div>
+              )}
             </button>
           ) : (
             <div className="lg:hidden cursor-pointer">
@@ -82,7 +119,7 @@ function Header({ setIsOtpFormOpen }) {
             </nav>
           </div>
           {userPhone ? (
-            <button className="hidden lg:flex lg:items-center ">
+            <button onClick={() => setUserProfile(prevState => !prevState)} className="relative hidden lg:flex lg:items-center cursor-pointer">
               <Image
                 src="/icons/profile.png"
                 width={24}
@@ -100,6 +137,41 @@ function Header({ setIsOtpFormOpen }) {
                 alt="arrow-down"
                 className="size-6"
               />
+              {userProfile && (
+                <div  className="absolute left-0 right-0 top-10 bg-white px-3 rounded-[11px]">
+                  <Link
+                    href="/profile"
+                    className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
+                  >
+                    <Image
+                      src="/icons/profile-white.png"
+                      width={16}
+                      height={16}
+                      className="w-5"
+                    />
+                    <span className="text-[14px]">اطلاعات حساب کاربری</span>
+                  </Link>
+                  <Link
+                    href="/user-basket"
+                    className="flex gap-x-4 items-center py-2 border-b-1 border-[#0000001F]"
+                  >
+                    <SlBasketLoaded/>
+
+                    <span className="text-[14px]">سبد خرید</span>
+                  </Link>
+                  <div className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2">
+                    <Image
+                      src="/icons/logout.png"
+                      width={16}
+                      height={16}
+                      className="w-5"
+                    />
+                    <span className="text-[14px] text-[#D40000]">
+                      خروج از حساب کاربری
+                    </span>
+                  </div>
+                </div>
+              )}
             </button>
           ) : (
             <button

@@ -1,9 +1,13 @@
+import { reserveTour } from "@/services/toursApi";
+import { useMutation } from "@tanstack/react-query";
 import { Check, Cross } from "lucide-react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 function TourDetailsMobile({data, isError, isPending}) {
   
-  const tourData = data?.data; 
+  const tourData = data?.data;
+  
 
   if (isPending) {
     return (
@@ -19,6 +23,21 @@ function TourDetailsMobile({data, isError, isPending}) {
         <h2 className="text-4xl text-red-500">مشکلی پیش اومده</h2>
       </div>
     );
+  }
+
+  const {mutate} = useMutation({
+    mutationFn: (id) => reserveTour(id),
+    onSuccess: (data) => {
+      toast.success(data?.data?.message)
+    },
+    onError: (err) => {
+      if(err.status == 401) toast.error('لطفا وارد حساب کاربری شوید')
+      else toast.error('مشکلی پیش اومده')
+    }
+  })
+
+  const reserveTourHandler = (id) => {
+    mutate(id);
   }
 
   return (
@@ -112,7 +131,7 @@ function TourDetailsMobile({data, isError, isPending}) {
           </div>
         </div>
         <div className="flex justify-around items-center font-vazir mt-8 mb-13.5">
-          <button className="bg-primary text-white w-38.5 py-[5.5px] rounded-[10px] hover:bg-green-700 transition cursor-pointer">
+          <button onClick={() => reserveTourHandler(tourData.id)} className="bg-primary text-white w-38.5 py-[5.5px] rounded-[10px] hover:bg-green-700 transition cursor-pointer">
             رزرو و خرید
           </button>
           <div className="flex items-end gap-x-1">

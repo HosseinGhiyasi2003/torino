@@ -15,4 +15,24 @@ const getTourById = async (id) => {
   return data;
 }
 
-export { getTours, getTourById };
+const reserveTour = async (id) => {
+  const data = await api.put(`basket/${id}`)
+  return data
+}
+
+const getBasketData = async () => {
+  const data = await api.get('basket');
+  return data
+}
+
+const orderTour = async (personalData) => {
+  const data = await api.post('order', personalData);
+  return data
+}
+
+const getUserTours = async () => {
+  const data = await api.get('user/tours')
+  return data
+}
+
+export { getTours, getTourById, reserveTour, getBasketData, orderTour, getUserTours };
