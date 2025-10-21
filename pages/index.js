@@ -13,15 +13,20 @@ export default function Home({
   const [step, setStep] = useState(1);
   const [otpCode, setOtpCode] = useState(null);
   const [userNumber, setUserNumber] = useState(null);
+  const [searchQuery, setSearchQuery] = useState({
+    // destinationId:2,
+    // originId:1
+  });
 
-  const { data, isError, isPending } = useQuery({
-    queryKey: ["tours"],
-    queryFn: () => getTours(),
-  });  
+  const { data, isError, isPending, isFetching } = useQuery({
+    queryKey: ["tours", searchQuery],
+    queryFn: () => getTours(searchQuery),
+  }); 
+  
 
   return (
     <>
-      <HomePage data={data} isError={isError} isPending={isPending} />
+      <HomePage data={data} isError={isError} isPending={isPending} searchQuery={searchQuery} setSearchQuery={setSearchQuery} isFetching={isFetching} />
       {step === 1 ? (
         <>
           {isOtpFormOpen && (
@@ -49,7 +54,7 @@ export async function getServerSideProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["tours"],
-    queryFn: () => getTours(),
+    queryFn: () => getTours({}),
   });
 
   return {

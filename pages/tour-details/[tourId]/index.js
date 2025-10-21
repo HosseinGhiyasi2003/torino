@@ -28,32 +28,32 @@ function TourDetails() {
 
 export default TourDetails;
 
-export async function getStaticPaths() {
-  const tours = await getTours();
+// export async function getStaticPaths() {
+//   const tours = await getTours({});
 
-  const paths =
-    tours?.data?.data?.map((tour) => ({
-      params: { tourId: tour.id.toString() },
-    })) || [];
+//   const paths =
+//     tours?.data?.data?.map((tour) => ({
+//       params: { tourId: tour.id.toString() },
+//     })) || [];
 
-  return { paths, fallback: 'blocking' }; 
-}
+//   return { paths, fallback: 'blocking' }; 
+// }
 
-export async function getStaticProps({ params }) {
-  const { tourId } = params;
+// export async function getStaticProps({ params }) {
+//   const { tourId } = params;
 
-  const queryClient = new QueryClient();
+//   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["tour", tourId],
-    queryFn: () => getTourById(tourId),
-  });
+//   await queryClient.prefetchQuery({
+//     queryKey: ["tour", tourId],
+//     queryFn: () => getTourById(tourId),
+//   });
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-      id: tourId,
-    },
-    revalidate: 600, // هر 10 دقیقه رفرش
-  };
-}
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//       id: tourId,
+//     },
+//     revalidate: 600, // هر 10 دقیقه رفرش
+//   };
+// }

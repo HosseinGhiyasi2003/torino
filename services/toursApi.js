@@ -1,14 +1,27 @@
 import api from "./config";
 
-const getTours = async () => {
-  try {
-    const data = await api.get("tour");
-    return data;
+// const getTours = async () => {
+//   try {
+//     const data = await api.get("tour");
+//     return data;
     
-  } catch (error) {
-    console.log('مشکلی پیش اومده');
-  }
-};
+//   } catch (error) {
+//     console.log('مشکلی پیش اومده');
+//   }
+// };
+
+const getTours = async (query = {}) => {
+  if (query.destinationId && query.originId) {
+  return await api.get(`tour?destinationId=${query.destinationId}&originId=${query.originId}`);
+} else if (query.destinationId) {
+  return await api.get(`tour?destinationId=${query.destinationId}`);
+} else if (query.originId) {
+  return await api.get(`tour?originId=${query.originId}`);
+} else {
+  return await api.get("tour");
+}
+}
+
 
 const getTourById = async (id) => {
   const data = await api.get(`tour/${id}`);

@@ -28,7 +28,7 @@ function Header({ setIsOtpFormOpen }) {
   };
 
   return (
-    <header>
+    <header className=" pb-3">
       <div className="container">
         <div className="flex justify-between mt-[13px]">
           <div
@@ -66,7 +66,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="size-4"
               />
               {userProfile && (
-                <div className="absolute left-2.5 w-[157px] top-10 bg-white px-3 rounded-[11px] z-10">
+                <div className="absolute left-2.5 w-[157px] top-10 bg-white px-3 rounded-[11px] z-10 shadow-2xl">
                   <Link
                     href="/profile"
                     className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
@@ -119,7 +119,7 @@ function Header({ setIsOtpFormOpen }) {
             </div>
           )}
           <div className="hidden lg:flex items-center gap-21">
-            <div className="">
+            <Link href='/'>
               <Image
                 src="/images/Torino.png"
                 width={60}
@@ -127,7 +127,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="w-[146px] h-11"
                 alt="لوگو"
               />
-            </div>
+            </Link>
             <nav className="flex gap-x-[17px] text-secondary">
               <Link href="/">صفحه اصلی</Link>
               <Link href="/">خدمات گردشگری</Link>
@@ -158,7 +158,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="size-6"
               />
               {userProfile && (
-                <div className="absolute left-0 right-0 top-10 bg-white px-3 rounded-[11px] z-10">
+                <div className="absolute left-0 right-0 top-10 bg-white px-3 rounded-[11px] z-10 shadow-2xl">
                   <Link
                     href="/profile"
                     className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"

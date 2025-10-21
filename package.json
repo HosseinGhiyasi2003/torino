@@ -28,6 +28,7 @@
     "react-multi-date-picker": "^4.5.2",
     "react-spinners": "^0.17.0",
     "tailwindcss": "^4.1.14",
-    "yup": "^1.7.1"
+    "yup": "^1.7.1",
+    "zaman": "^2.1.1"
   }
 }

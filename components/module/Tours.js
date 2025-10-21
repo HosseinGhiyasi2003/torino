@@ -14,6 +14,16 @@ function Tours({ data, isError, isPending }) {
     );
   }
 
+   if (!data?.data?.length) {
+    return (
+      <div className="container mt-10">
+        <h2 className="text-center text-gray-600 text-lg font-medium">
+          هیچ توری با این مشخصات پیدا نشد 😕
+        </h2>
+      </div>
+    );
+  }
+
   if (isPending) {
     return (
       <div className="container">
