@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { toPersianDigits } from "@/utils/helper";
 
 function TorinoSlider() {
   const [current, setCurrent] = useState(0);
@@ -113,7 +114,7 @@ function TorinoSlider() {
                 <ChevronRight className="w-6 h-6" />
               </button>
               <p className="text-gray-700 font-medium">
-                {images.length} / {current + 1}
+                {toPersianDigits(images.length)} / {toPersianDigits(current + 1)}
               </p>
               <button onClick={prevSlide}>
                 <ChevronLeft className="w-6 h-6" />

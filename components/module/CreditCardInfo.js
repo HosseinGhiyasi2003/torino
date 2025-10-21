@@ -1,4 +1,5 @@
 import { updateUserProfile } from "@/services/profileApi";
+import { toPersianDigits } from "@/utils/helper";
 import { creditCardValidationSchema } from "@/utils/schema/creditCardValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -125,13 +126,13 @@ function CreditCardInfo({data, isPending}) {
           <div className="text-[14px] flex justify-between  lg:justify-start lg:gap-x-8 lg:w-1/2">
             <span>شماره کارت</span>
             {data?.data?.payment?.debitCard_code ? <span className="text-secondary font-semibold">
-              {data?.data?.payment?.debitCard_code}
+              {toPersianDigits(data?.data?.payment?.debitCard_code)}
             </span> : <span className="text-secondary font-semibold"> - </span>}
           </div>
           <div className="text-[14px] flex justify-between  lg:justify-start lg:gap-x-[99px] lg:w-1/2">
             <span>شماره شبا</span>
             {data?.data?.payment?.shaba_code ? <span className="text-secondary font-semibold">
-              {data?.data?.payment?.shaba_code}
+              {toPersianDigits(data?.data?.payment?.shaba_code)}
             </span> : <span className="text-secondary font-semibold"> - </span>}
           </div>
           {/* <div className="text-[14px] flex justify-between  lg:justify-start lg:gap-x-8 lg:w-1/2">

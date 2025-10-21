@@ -8,6 +8,7 @@ import { personalInfoSchema } from "@/utils/schema/personalInfoValidation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateUserProfile } from "@/services/profileApi";
 import Skeleton from "react-loading-skeleton";
+import { toPersianDigits } from "@/utils/helper";
 
 function PersonalInfo({ data, isPending }) {
   const queryClient = useQueryClient();
@@ -180,7 +181,7 @@ function PersonalInfo({ data, isPending }) {
               type="button"
               onClick={() => {
                 setIsEditing(false);
-                reset(); // بازگرداندن به مقادیر اولیه
+                reset();
               }}
               className="border-2 border-primary text-primary rounded-[5px] font-semibold w-1/2 py-2 lg:w-36"
             >
@@ -202,7 +203,7 @@ function PersonalInfo({ data, isPending }) {
           </div>
           <div className="text-[14px] flex justify-between lg:w-2/4 lg:justify-start lg:gap-x-8">
             <span>کدملی</span>
-            {data?.data?.nationalCode ?<span className="text-secondary font-semibold">{data?.data?.nationalCode}</span>: <span className="text-secondary font-semibold"> - </span>}
+            {data?.data?.nationalCode ?<span className="text-secondary font-semibold">{toPersianDigits(data?.data?.nationalCode)}</span>: <span className="text-secondary font-semibold"> - </span>}
 
           </div>
           <div className="text-[14px] flex justify-between lg:w-2/4 lg:justify-start lg:gap-x-[99px]">

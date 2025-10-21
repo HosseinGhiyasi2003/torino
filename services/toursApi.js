@@ -35,4 +35,9 @@ const getUserTours = async () => {
   return data
 }
 
-export { getTours, getTourById, reserveTour, getBasketData, orderTour, getUserTours };
+const getTransactions = async () => {
+  const data = await api.get('user/transactions')
+  return data
+}
+
+export { getTours, getTourById, reserveTour, getBasketData, orderTour, getUserTours, getTransactions };

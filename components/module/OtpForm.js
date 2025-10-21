@@ -5,6 +5,7 @@ import { otpFormSchema } from "@/utils/schema/otpFormValidation";
 import { useMutation } from "@tanstack/react-query";
 import { sendOtpCode } from "@/services/authApi";
 import toast from "react-hot-toast";
+import { toPersianDigits } from "@/utils/helper";
 
 function OtpForm({ setIsOtpFormOpen, setStep, setOtpCode, setUserNumber }) {
   const {
@@ -61,7 +62,7 @@ function OtpForm({ setIsOtpFormOpen, setStep, setOtpCode, setUserNumber }) {
               </label>
               <input
                 {...register("mobile")}
-                placeholder="4253***0912"
+                placeholder={`${toPersianDigits(4253)}***${toPersianDigits(0)}${toPersianDigits(912)}`}
                 id="otp"
                 className=" text-[#00000080] outline-0 border-1 border-[#00000040] p-2 rounded-[6px] my-2.5"
               />

@@ -1,3 +1,4 @@
+import { toPersianDigits } from "@/utils/helper"
 import Image from "next/image"
 
 function TourFeatures() {
@@ -16,14 +17,14 @@ function TourFeatures() {
             <Image src='/images/support.png' width={71} height={64} alt="percent" />
             <div className="flex flex-col gap-y-0.5 text-secondary font-vazir">
               <h4 className="font-medium lg:text-xl xl:text-[26px]">پشتیبانی</h4>
-              <p className="text-[14px] max-w-[225px] xl:text-[16px]">پشتیبانی و همراهی 24 ساعته در تمامی مراحل سفر شما.</p>
+              <p className="text-[14px] max-w-[225px] xl:text-[16px]">پشتیبانی و همراهی {toPersianDigits(24)} ساعته در تمامی مراحل سفر شما.</p>
             </div>
           </div>
           <div className="flex gap-x-4 col-span-12 sm:col-span-6 lg:col-span-4">
             <Image src='/images/satisfaction.png' width={71} height={64} alt="percent" />
             <div className="flex flex-col gap-y-0.5 text-secondary font-vazir">
               <h4 className="font-medium lg:text-xl xl:text-[26px]">رضایت کاربران</h4>
-              <p className="text-[14px] max-w-[225px] xl:text-[16px]">رضایت بیش از 10هزار کاربر از تور های ما. </p>
+              <p className="text-[14px] max-w-[225px] xl:text-[16px]">رضایت بیش از {toPersianDigits(10)}هزار کاربر از تور های ما. </p>
             </div>
           </div>
         </div>

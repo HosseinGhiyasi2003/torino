@@ -1,4 +1,5 @@
 import { orderTour } from "@/services/toursApi";
+import { toPersianDigits } from "@/utils/helper";
 import { userBasketSchema } from "@/utils/schema/userBasketValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
@@ -143,7 +144,7 @@ function BuySection({ data, isPending }) {
       <div className="border-1 border-[#0000001A] rounded-[10px] mb-[37px] px-[13px] py-4 bg-white lg:w-2/6 lg:mt-[17px] lg:mb-[298px]">
         <div className="flex justify-between items-center">
           <h3 className="text-2xl font-semibold">{data?.data?.title}</h3>
-          <span className="text-secondary font-vazir">5 روز و 4 شب</span>
+          <span className="text-secondary font-vazir">{toPersianDigits(5)} روز و {toPersianDigits(4)} شب</span>
         </div>
         <div className="flex flex-col font-vazir border-t-1 border-dashed pt-[19px] mt-6">
           <div className="flex justify-between">
@@ -152,7 +153,7 @@ function BuySection({ data, isPending }) {
             </span>
             <div className="flex items-center gap-x-2">
               <span className="text-[#009ECA] text-[24px] lg:text-xl xl:text-[24px]">
-                {data?.data?.price.toLocaleString()}
+                {toPersianDigits(data?.data?.price.toLocaleString())}
               </span>
               <span className="text-[14px]">تومان</span>
             </div>

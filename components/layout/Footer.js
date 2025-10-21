@@ -1,3 +1,4 @@
+import { toPersianDigits } from "@/utils/helper";
 import Image from "next/image";
 
 function Footer() {
@@ -76,14 +77,16 @@ function Footer() {
                   alt="cover"
                 />
                 <span className="text-[14px] mt-[11px] text-[#000000]">
-                  تلفن پشتیبانی:021-8574
+                  تلفن پشتیبانی:{toPersianDigits(8574)}-{toPersianDigits(0)}{toPersianDigits(21)}
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className="border-t-1 border-[#00000040] mt-2 md:mt-[37px]">
-          <h5 className="text-center text-[#000000] text-[12px] md:pt-3 md:text-[15px]">کلیه حقوق این وب سایت متعلق به تورینو میباشد.</h5>
+          <h5 className="text-center text-[#000000] text-[12px] md:pt-3 md:text-[15px]">
+            کلیه حقوق این وب سایت متعلق به تورینو میباشد.
+          </h5>
         </div>
       </div>
     </footer>

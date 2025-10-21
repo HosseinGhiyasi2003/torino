@@ -14,14 +14,14 @@ export default function Home({
   const [otpCode, setOtpCode] = useState(null);
   const [userNumber, setUserNumber] = useState(null);
 
-  const { data, isError } = useQuery({
+  const { data, isError, isPending } = useQuery({
     queryKey: ["tours"],
     queryFn: () => getTours(),
   });  
 
   return (
     <>
-      <HomePage data={data} isError={isError} />
+      <HomePage data={data} isError={isError} isPending={isPending} />
       {step === 1 ? (
         <>
           {isOtpFormOpen && (

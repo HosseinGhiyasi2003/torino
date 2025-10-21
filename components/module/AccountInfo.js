@@ -1,4 +1,5 @@
 import { updateUserProfile } from "@/services/profileApi";
+import { toPersianDigits } from "@/utils/helper";
 import { emailValidationSchema } from "@/utils/schema/emailValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -68,7 +69,7 @@ function AccountInfo({ data, isPending }) {
         <div className="flex justify-between gap-x-8">
           <span className="text-[14px]">شماره موبایل</span>
           <span className="text-[14px] text-secondary font-vazir">
-            {data?.data?.mobile}
+            {toPersianDigits(data?.data?.mobile)}
           </span>
         </div>
 

@@ -1,3 +1,4 @@
+import { toPersianDigits } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,7 +28,7 @@ function ContactUs() {
           </div>
           <div className="flex justify-around my-3 md:flex-col md:items-center md:w-1/3 lg:justify-center lg:gap-y-3">
             <div className="flex items-center gap-x-2">
-              <span className="text-xl font-bold">021-1840</span>
+              <span className="text-xl font-bold">{toPersianDigits(0)}{toPersianDigits(21)}-{toPersianDigits(1840)}</span>
               <Image
                 src="/icons/call-2.png"
                 width={24}

@@ -2,10 +2,25 @@ import Image from "next/image";
 import { FaShuttleVan } from "react-icons/fa";
 import { TbCarSuvFilled } from "react-icons/tb";
 import MyTourDetailsSkeleton from "./MyTourDetailsSkeleton";
+import { formatJalaliDate, toPersianDigits } from "@/utils/helper";
 
 
 function MyTourDetails({tourDetail, isPending}) {
   
+  let formatOriginDate = null;
+  let formatDestinationDate = null;
+
+
+  if(tourDetail) {
+    const originDate = new Date(tourDetail?.startDate);
+    formatOriginDate = formatJalaliDate(originDate);
+
+    const destinationDate = new Date(tourDetail?.endDate);
+    formatDestinationDate = formatJalaliDate(destinationDate);
+  }
+  
+
+
    if (isPending) return <MyTourDetailsSkeleton />;
 
   return (
@@ -43,13 +58,13 @@ function MyTourDetails({tourDetail, isPending}) {
         <div className="flex justify-between lg:items-center  lg:gap-x-4">
           <h3 className="text-[18px] font-semibold">{tourDetail.origin.name == 'Sanandaj' ? 'سنندج' : tourDetail.origin.name == 'Isfahan' ? 'اصفهان' : 'تهران'} به {tourDetail.destination.name == 'Sanandaj' ? 'سنندج' : tourDetail.destination.name == 'Madrid' ? 'مادرید': tourDetail.destination.name == 'Sulaymaniyah' ? 'سلیمانیه' : tourDetail.destination.name == 'Hewler' ? 'اربیل' : tourDetail.destination.name == 'Mazandaran' ? 'مازندران' : tourDetail.destination.name == 'Offroad' ? 'اف رود' : 'ایتالیا'} </h3>
           <span className="text-[14px] text-[#00000099] lg:text-[18px] font-vazir">
-            دوشنبه 15 شهریور 1402
+            {formatOriginDate.weekDay} {toPersianDigits(formatOriginDate.day)} {formatOriginDate.month} {toPersianDigits(formatOriginDate.year)}
           </span>
         </div>
         <div className="flex justify-between lg:items-center  lg:gap-x-4">
           <h3 className="text-[18px] font-semibold">تاریخ برگشت</h3>
           <span className="text-[14px] text-[#00000099] lg:text-[18px] font-vazir">
-            جمعه 19 شهریور 1402
+            {formatDestinationDate.weekDay} {toPersianDigits(formatDestinationDate.day)} {formatDestinationDate.month} {toPersianDigits(formatDestinationDate.year)}
           </span>
         </div>
       </div>
@@ -67,7 +82,7 @@ function MyTourDetails({tourDetail, isPending}) {
             مبلغ پرداخت شده
           </span>
           <span className="font-medium flex items-center text-[18px] font-vazir">
-            <span className="max-sm:text-[12px]">{tourDetail.price.toLocaleString()}</span>{" "}
+            <span className="max-sm:text-[12px]">{toPersianDigits(tourDetail.price.toLocaleString())}</span>{" "}
             <span className="text-[10px]">تومان</span>
           </span>
         </div>

@@ -2,11 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import { getCookie } from "@/utils/cookie";
+import { getCookie, removeCookie } from "@/utils/cookie";
 import { SlBasketLoaded } from "react-icons/sl";
-
+import { useRouter } from "next/router";
+import { toPersianDigits } from "@/utils/helper";
 
 function Header({ setIsOtpFormOpen }) {
+  const router = useRouter();
   const [isSidebarOpen, setIsSideBarOpen] = useState(false);
   const [userPhone, setUserPhone] = useState("");
   const [userProfile, setUserProfile] = useState(false);
@@ -18,6 +20,12 @@ function Header({ setIsOtpFormOpen }) {
       setUserPhone(phone);
     }
   }, []);
+
+  const handleLogout = () => {
+    removeCookie("accessToken");
+    removeCookie("phone");
+    window.location.href = "/";
+  };
 
   return (
     <header>
@@ -36,7 +44,10 @@ function Header({ setIsOtpFormOpen }) {
             />
           </div>
           {userPhone ? (
-            <button onClick={() => setUserProfile(prevState => !prevState)} className="relative flex items-center lg:hidden cursor-pointer">
+            <button
+              onClick={() => setUserProfile((prevState) => !prevState)}
+              className="relative flex items-center lg:hidden cursor-pointer"
+            >
               <Image
                 src="/icons/profile.png"
                 width={14}
@@ -45,7 +56,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="size-3.5"
               />
               <span className="mx-1 text-primary font-medium text-[14px]">
-                {userPhone}
+                {toPersianDigits(userPhone)}
               </span>
               <Image
                 src="/icons/arrow-down.png"
@@ -55,7 +66,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="size-4"
               />
               {userProfile && (
-                <div className="absolute left-2.5 w-[157px] top-10 bg-white px-3 rounded-[11px]">
+                <div className="absolute left-2.5 w-[157px] top-10 bg-white px-3 rounded-[11px] z-10">
                   <Link
                     href="/profile"
                     className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
@@ -72,10 +83,13 @@ function Header({ setIsOtpFormOpen }) {
                     href="/user-basket"
                     className="flex items-center gap-x-3 py-2 border-b-1 border-[#0000001F]"
                   >
-                    <SlBasketLoaded/>
+                    <SlBasketLoaded />
                     <span className="text-[12px]">سبد خرید</span>
                   </Link>
-                  <div className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2">
+                  <div
+                    onClick={() => handleLogout()}
+                    className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
+                  >
                     <Image
                       src="/icons/logout.png"
                       width={16}
@@ -97,7 +111,10 @@ function Header({ setIsOtpFormOpen }) {
                 height={20}
                 className="size-10"
                 alt="signin"
-                onClick={() => setIsOtpFormOpen(true)}
+                onClick={() => {
+                  router.push("/");
+                  setIsOtpFormOpen(true);
+                }}
               />
             </div>
           )}
@@ -119,7 +136,10 @@ function Header({ setIsOtpFormOpen }) {
             </nav>
           </div>
           {userPhone ? (
-            <button onClick={() => setUserProfile(prevState => !prevState)} className="relative hidden lg:flex lg:items-center cursor-pointer">
+            <button
+              onClick={() => setUserProfile((prevState) => !prevState)}
+              className="relative hidden lg:flex lg:items-center cursor-pointer"
+            >
               <Image
                 src="/icons/profile.png"
                 width={24}
@@ -128,7 +148,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="size-6"
               />
               <span className="mx-1 text-primary font-medium text-[18px]">
-                {userPhone}
+                {toPersianDigits(userPhone)}
               </span>
               <Image
                 src="/icons/arrow-down.png"
@@ -138,7 +158,7 @@ function Header({ setIsOtpFormOpen }) {
                 className="size-6"
               />
               {userProfile && (
-                <div  className="absolute left-0 right-0 top-10 bg-white px-3 rounded-[11px]">
+                <div className="absolute left-0 right-0 top-10 bg-white px-3 rounded-[11px] z-10">
                   <Link
                     href="/profile"
                     className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
@@ -155,11 +175,14 @@ function Header({ setIsOtpFormOpen }) {
                     href="/user-basket"
                     className="flex gap-x-4 items-center py-2 border-b-1 border-[#0000001F]"
                   >
-                    <SlBasketLoaded/>
+                    <SlBasketLoaded />
 
                     <span className="text-[14px]">سبد خرید</span>
                   </Link>
-                  <div className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2">
+                  <div
+                    onClick={() => handleLogout()}
+                    className="flex items-center gap-x-2 border-b-1 border-[#0000001F] py-2"
+                  >
                     <Image
                       src="/icons/logout.png"
                       width={16}
@@ -175,7 +198,10 @@ function Header({ setIsOtpFormOpen }) {
             </button>
           ) : (
             <button
-              onClick={() => setIsOtpFormOpen(true)}
+              onClick={() => {
+                router.push("/");
+                setIsOtpFormOpen(true);
+              }}
               className="w-[166px] h-11 border-2 border-primary hidden lg:flex rounded-[8px] items-center px-[15px] text-primary cursor-pointer text-[18px]"
             >
               <div className="flex gap-x-1 border-l pl-2 ml-2 items-center">

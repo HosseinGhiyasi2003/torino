@@ -9,4 +9,8 @@ function getCookie(name) {
   if (parts?.length === 2) return parts?.pop()?.split(";")?.shift();
 }
 
-export { setCookie, getCookie };
+function removeCookie(name) {
+  document.cookie = `${name}=; max-age=0; path=/`;
+}
+
+export { setCookie, getCookie, removeCookie };

@@ -1,5 +1,6 @@
 import { checkOtpCode } from "@/services/authApi";
 import { setCookie } from "@/utils/cookie";
+import { toPersianDigits } from "@/utils/helper";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -76,7 +77,7 @@ function SendOtpForm({ setStep, otpCode, userNumber, setConfirmedNumber }) {
             کد تایید را وارد کنید.
           </h3>
           <p className="text-center mt-[17px] text-[14px] text-secondary">
-            کد تایید به شماره {userNumber} ارسال شد
+            کد تایید به شماره {toPersianDigits(userNumber)} ارسال شد
           </p>
           <div className="flex justify-center gap-x-2.5 mt-[21px]" dir="ltr">
             <input
@@ -128,10 +129,10 @@ function SendOtpForm({ setStep, otpCode, userNumber, setConfirmedNumber }) {
               dir="ltr"
             />
           </div>
-          <p className="text-center mt-6">
+          {/* <p className="text-center mt-6">
             <span>1:25</span>
             <span>تا ارسال مجدد کد</span>
-          </p>
+          </p> */}
           <button
             onClick={submitHandler}
             className={`bg-primary py-[13px] mt-[41px] text-white text-[18px] font-medium rounded-[6px] w-full transition ${

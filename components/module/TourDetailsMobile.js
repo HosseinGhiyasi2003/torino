@@ -1,4 +1,5 @@
 import { reserveTour } from "@/services/toursApi";
+import { toPersianDigits } from "@/utils/helper";
 import { useMutation } from "@tanstack/react-query";
 import { Check, Cross } from "lucide-react";
 import Image from "next/image";
@@ -54,7 +55,7 @@ function TourDetailsMobile({data, isError, isPending}) {
         </div>
         <div className="flex justify-between mt-4">
           <h1 className="text-2xl font-bold text-[#000000]">{tourData.title}</h1>
-          <span className="text-secondary text-[15px]">5 روز و 4 شب</span>
+          <span className="text-secondary text-[15px]">{toPersianDigits(5)} روز و {toPersianDigits(4)} شب</span>
         </div>
         <div className="flex justify-between gap-x-6 mt-5">
           <div className="flex items-center gap-x-2">
@@ -136,7 +137,7 @@ function TourDetailsMobile({data, isError, isPending}) {
           </button>
           <div className="flex items-end gap-x-1">
             <span className="text-[#009ECA] text-2xl font-medium">
-              {tourData.price.toLocaleString()}
+              {toPersianDigits(tourData.price.toLocaleString())}
             </span>
             <span className="text-[#000000] text-[12px]">تومان</span>
           </div>

@@ -102,7 +102,7 @@ function SearchBoxWrapper() {
           </div>
 
           {/* دکمه جستجو */}
-          <button className="bg-green-600 text-white rounded-xl w-full py-2.5 text-[16px] font-medium hover:bg-green-700 transition">
+          <button className="bg-green-600 text-white rounded-xl w-full py-2.5 text-[16px] font-medium cursor-pointer hover:bg-green-700 transition">
             جستجو
           </button>
         </div>

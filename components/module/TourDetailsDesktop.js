@@ -1,4 +1,5 @@
 import { reserveTour } from "@/services/toursApi";
+import { formatJalaliDate, toPersianDigits } from "@/utils/helper";
 import { useMutation } from "@tanstack/react-query";
 import { Check, Cross } from "lucide-react";
 import Image from "next/image";
@@ -6,6 +7,19 @@ import toast from "react-hot-toast";
 
 function TourDetailsDesktop({ data, isError, isPending }) {
   const tourData = data?.data;
+  
+  let formatOriginDate = null;
+  let formatDestinationDate = null;
+
+  if (tourData) {
+    const originDate = new Date(tourData?.startDate);
+    formatOriginDate = formatJalaliDate(originDate);
+
+    const destinationDate = new Date(tourData?.endDate);
+    formatDestinationDate = formatJalaliDate(destinationDate);
+  }
+  
+  
 
   if (isPending) {
     return (
@@ -23,20 +37,20 @@ function TourDetailsDesktop({ data, isError, isPending }) {
     );
   }
 
-  const {mutate} = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (id) => reserveTour(id),
     onSuccess: (data) => {
-      toast.success(data?.data?.message)
+      toast.success(data?.data?.message);
     },
     onError: (err) => {
-      if(err.status == 401) toast.error('لطفا وارد حساب کاربری شوید')
-      else toast.error('مشکلی پیش اومده')
-    }
-  })
+      if (err.status == 401) toast.error("لطفا وارد حساب کاربری شوید");
+      else toast.error("مشکلی پیش اومده");
+    },
+  });
 
   const reserveTourHandler = (id) => {
     mutate(id);
-  }
+  };
 
   return (
     <div className="bg-[#F3F3F3] hidden lg:block max-w-[1740px] w-full mx-auto pt-9 pb-[99px]">
@@ -57,7 +71,7 @@ function TourDetailsDesktop({ data, isError, isPending }) {
               <h1 className="text-[32px] text-[#000000] font-bold mb-4">
                 {tourData.title}
               </h1>
-              <span className="text-secondary text-xl">5 روز و 4 شب</span>
+              <span className="text-secondary text-xl">{toPersianDigits(5)} روز و {toPersianDigits(4)} شب</span>
               <div className="flex gap-x-6 mt-6">
                 <div className="flex gap-x-2">
                   <Image
@@ -97,11 +111,14 @@ function TourDetailsDesktop({ data, isError, isPending }) {
               <div className="flex justify-between mt-[35px]">
                 <div className="flex items-end gap-x-1 font-vazir">
                   <span className="text-[#009ECA] text-[28px]">
-                    {tourData.price.toLocaleString()}
+                    {toPersianDigits(tourData.price.toLocaleString())}
                   </span>
                   <span className="text-secondary text-[14px]">تومان</span>
                 </div>
-                <button onClick={() => reserveTourHandler(tourData.id)} className="bg-primary w-51 text-white rounded-[10px] text-2xl font-vazir hover:bg-green-700 transition cursor-pointer p-[9px]">
+                <button
+                  onClick={() => reserveTourHandler(tourData.id)}
+                  className="bg-primary w-51 text-white rounded-[10px] text-2xl font-vazir hover:bg-green-700 transition cursor-pointer p-[9px]"
+                >
                   رزرو و خرید
                 </button>
               </div>
@@ -122,7 +139,7 @@ function TourDetailsDesktop({ data, isError, isPending }) {
               <h5 className="font-medium">
                 {tourData.origin.name == "Tehran"
                   ? "تهران"
-                  : tourData.origin.name == "Sananndaj"
+                  : tourData.origin.name == "Sanandaj"
                   ? "سنندج"
                   : tourData.origin.name == "Isfahan"
                   ? "اصفهان"
@@ -139,7 +156,7 @@ function TourDetailsDesktop({ data, isError, isPending }) {
                 />
                 تاریخ رفت
               </h4>
-              <h5 className="font-medium">23 مهر 1403</h5>
+              <h5 className="font-medium">{toPersianDigits(formatOriginDate.day)} {formatOriginDate.month} {toPersianDigits(formatOriginDate.year)}</h5>
             </div>
             <div className="flex flex-col gap-y-3 border-l-1 border-[#00000040] pl-[43px] ">
               <h4 className="text-[#444444] flex gap-x-2 items-center">
@@ -151,7 +168,7 @@ function TourDetailsDesktop({ data, isError, isPending }) {
                 />
                 تاریخ برگشت
               </h4>
-              <h5 className="font-medium">28 مهر 1403</h5>
+              <h5 className="font-medium">{toPersianDigits(formatDestinationDate.day)} {formatDestinationDate.month} {toPersianDigits(formatDestinationDate.year)}</h5>
             </div>
             <div className="flex flex-col gap-y-3 border-l-1 border-[#00000040] pl-[43px] ">
               <h4 className="text-[#444444] flex gap-x-2 items-center">
@@ -187,7 +204,9 @@ function TourDetailsDesktop({ data, isError, isPending }) {
                 />
                 بیمه
               </h4>
-              <h5 className="font-medium">{tourData.insurance ? <Check /> : <Cross />}</h5>
+              <h5 className="font-medium">
+                {tourData.insurance ? <Check /> : <Cross />}
+              </h5>
             </div>
           </div>
         </div>
