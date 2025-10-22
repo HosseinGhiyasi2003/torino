@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 function TourDetailsDesktop({ data, isError, isPending }) {
   const tourData = data?.data;
-  
+
   let formatOriginDate = null;
   let formatDestinationDate = null;
 
@@ -18,8 +18,6 @@ function TourDetailsDesktop({ data, isError, isPending }) {
     const destinationDate = new Date(tourData?.endDate);
     formatDestinationDate = formatJalaliDate(destinationDate);
   }
-  
-  
 
   if (isPending) {
     return (
@@ -71,7 +69,9 @@ function TourDetailsDesktop({ data, isError, isPending }) {
               <h1 className="text-[32px] text-[#000000] font-bold mb-4">
                 {tourData.title}
               </h1>
-              <span className="text-secondary text-xl">{toPersianDigits(5)} روز و {toPersianDigits(4)} شب</span>
+              <span className="text-secondary text-xl">
+                {toPersianDigits(5)} روز و {toPersianDigits(4)} شب
+              </span>
               <div className="flex gap-x-6 mt-6">
                 <div className="flex gap-x-2">
                   <Image
@@ -156,7 +156,10 @@ function TourDetailsDesktop({ data, isError, isPending }) {
                 />
                 تاریخ رفت
               </h4>
-              <h5 className="font-medium">{toPersianDigits(formatOriginDate.day)} {formatOriginDate.month} {toPersianDigits(formatOriginDate.year)}</h5>
+              <h5 className="font-medium">
+                {toPersianDigits(formatOriginDate.day)} {formatOriginDate.month}{" "}
+                {toPersianDigits(formatOriginDate.year)}
+              </h5>
             </div>
             <div className="flex flex-col gap-y-3 border-l-1 border-[#00000040] pl-[43px] ">
               <h4 className="text-[#444444] flex gap-x-2 items-center">
@@ -168,7 +171,11 @@ function TourDetailsDesktop({ data, isError, isPending }) {
                 />
                 تاریخ برگشت
               </h4>
-              <h5 className="font-medium">{toPersianDigits(formatDestinationDate.day)} {formatDestinationDate.month} {toPersianDigits(formatDestinationDate.year)}</h5>
+              <h5 className="font-medium">
+                {toPersianDigits(formatDestinationDate.day)}{" "}
+                {formatDestinationDate.month}{" "}
+                {toPersianDigits(formatDestinationDate.year)}
+              </h5>
             </div>
             <div className="flex flex-col gap-y-3 border-l-1 border-[#00000040] pl-[43px] ">
               <h4 className="text-[#444444] flex gap-x-2 items-center">
