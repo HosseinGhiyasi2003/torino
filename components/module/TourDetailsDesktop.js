@@ -53,7 +53,7 @@ function TourDetailsDesktop({ data, isError, isPending }) {
   };
 
   return (
-    <div className="bg-[#F3F3F3] hidden lg:block max-w-[1740px] w-full mx-auto pt-9 pb-[99px]">
+    <div className="bg-[#F3F3F3] hidden lg:block max-w-[1740px] w-full mx-auto pt-9 pb-[99px] lg:mb-7">
       <div className="container">
         <div className="bg-white py-[29px] px-5 rounded-[10px]">
           {/* top section */}
