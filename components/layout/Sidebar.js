@@ -25,7 +25,7 @@ function Sidebar({ isSidebarOpen, setIsSideBarOpen }) {
               />
             </div>
 
-            <Link href="/">
+            <Link href="/" className="hover:text-primary duration-150">
               <li className="flex gap-x-2 items-center">
                 <Image
                   src="/icons/home.png"
@@ -37,7 +37,7 @@ function Sidebar({ isSidebarOpen, setIsSideBarOpen }) {
                 <span>صفحه اصلی</span>
               </li>
             </Link>
-            <Link href="/">
+            <Link href="/" className="hover:text-primary duration-150">
               <li className="flex gap-x-2 items-center">
                 <Image
                   src="/icons/airplane-square.png"
@@ -49,7 +49,7 @@ function Sidebar({ isSidebarOpen, setIsSideBarOpen }) {
                 <span>خدمات گردشگری</span>
               </li>
             </Link>
-            <Link href="/">
+            <Link href="/" className="hover:text-primary duration-150">
               <li className="flex gap-x-2 items-center">
                 <Image
                   src="/icons/volume.png"
@@ -61,7 +61,7 @@ function Sidebar({ isSidebarOpen, setIsSideBarOpen }) {
                 <span>درباره ما</span>
               </li>
             </Link>
-            <Link href="/">
+            <Link href="/" className="hover:text-primary duration-150">
               <li className="flex gap-x-2 items-center">
                 <Image
                   src="/icons/call.png"

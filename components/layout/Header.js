@@ -30,7 +30,7 @@ function Header({ setIsOtpFormOpen }) {
   return (
     <header className=" pb-3">
       <div className="container">
-        <div className="flex justify-between mt-[13px]">
+        <div className="flex justify-between items-center mt-[13px]">
           <div
             className=" lg:hidden cursor-pointer"
             onClick={() => setIsSideBarOpen(true)}
@@ -129,10 +129,10 @@ function Header({ setIsOtpFormOpen }) {
               />
             </Link>
             <nav className="flex gap-x-[17px] text-secondary">
-              <Link href="/">صفحه اصلی</Link>
-              <Link href="/">خدمات گردشگری</Link>
-              <Link href="/">درباره ما</Link>
-              <Link href="/">تماس با ما</Link>
+              <Link href="/" className="font-semibold hover:text-primary duration-150">صفحه اصلی</Link>
+              <Link href="/" className="font-semibold hover:text-primary duration-150">خدمات گردشگری</Link>
+              <Link href="/" className="font-semibold hover:text-primary duration-150">درباره ما</Link>
+              <Link href="/" className="font-semibold hover:text-primary duration-150">تماس با ما</Link>
             </nav>
           </div>
           {userPhone ? (

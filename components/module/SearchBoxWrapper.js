@@ -116,7 +116,7 @@ function SearchBoxWrapper({ searchQuery, setSearchQuery }) {
               </span>
 
               {destinationModalOpen && (
-                <div className="absolute h-[300px] left-0 right-0 -bottom-77 rounded-[11px] border-1 z-10 bg-white border-[#0000001F] overflow-hidden">
+                <div className="absolute h-[340px] left-0 right-0 -bottom-87.5 rounded-[11px] border-1 z-10 bg-white border-[#0000001F] overflow-hidden">
                   <h3 className="text-[13px] bg-[#F8F8F8] p-[7px]">پرتردد</h3>
                   <ul className="">
                     <li
